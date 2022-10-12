@@ -29,7 +29,6 @@ const SchoolList = () => {
 
   const Filters = [
     <TextInput label="School Name" source="name" alwaysOn key={"search"} />,
-    <TextInput label="Udise" source="udise" key={"search"} />,
     <SelectInput label="Type" source="type" choices={typeChoice} />,
     <SelectInput label="Session" source="session" choices={sessionChoices} />,
     <SelectInput label="Active" source="is_active" choices={activeChoices} />,
