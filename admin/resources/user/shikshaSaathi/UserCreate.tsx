@@ -6,6 +6,8 @@ import {
   NumberInput,
   SelectInput,
   Button,
+  minLength,
+  maxLength,
 } from "react-admin";
 import { useLogin } from "../hooks";
 import { getClusters } from "../designation";
@@ -32,7 +34,7 @@ const UserCreate = (props: any) => {
     district: "",
     block: "",
     cluster: "",
-    roles: ["school"],
+    roles: ["school","teacher","principle"],
     password: "1234abcd",
   });
   // to be called when submitted
@@ -78,7 +80,8 @@ const UserCreate = (props: any) => {
   const districtChoices = getAllDistricts("", _loggedInUser);
   const blockChoices = getBlocks(state.district, "", _loggedInUser);
   const clusterChoices = getClusters(state.block, "", _loggedInUser);
-
+  
+  const validatePhoneNumber = [minLength(10, "Phone Number must be 10 digit long"), maxLength(10, "Phone Number must be 10 digit long")];
   return userCreated ? (
     <>
       <p>User Successfully Created</p>
@@ -101,16 +104,9 @@ const UserCreate = (props: any) => {
           onChange={(e) => setState({ ...state, mobile: e.target.value })}
           source="mobilePhone"
           label="Mobile Phone"
+          validate={validatePhoneNumber}
         />
-
-        <TextInput
-          onChange={(e) =>
-            setState({ ...state, geographicLevel: e.target.value })
-          }
-          disabled
-          source="geographic_level"
-          label="GeoGraphic Level"
-        />
+      
         <SelectInput
           value={state.designation}
           onChange={(e) => {
