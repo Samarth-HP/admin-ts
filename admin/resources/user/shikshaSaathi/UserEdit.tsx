@@ -72,7 +72,6 @@ const UserForm = () => {
   const blockChoices = getBlocks(state.district, "", _loggedInUser);
   const clusterChoices = getClusters(state.block, "", _loggedInUser);
 
-  const validateFullName = regex(/^[a-zA-Z0-9\s]*$/, 'Name should contain only spaces and words and Numbers');
   const validatePhoneNumber = [minLength(10, "Phone Number must be 10 digit long"), maxLength(10, "Phone Number must be 10 digit long")];
 
   return (
@@ -80,7 +79,7 @@ const UserForm = () => {
       <span>User Details</span>
 
       <TextInput source="username" disabled={true} />
-      <TextInput source="fullName" label="Full Name" validate={validateFullName} />
+      <TextInput source="fullName" label="Full Name"  />
       <TextInput source="mobilePhone" label="Mobile Phone" validate={validatePhoneNumber} />
       <SelectInput
         value={state.designation}

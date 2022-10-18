@@ -34,7 +34,6 @@ const UserCreate = (props: any) => {
     district: "",
     block: "",
     cluster: "",
-    roles: ["school","teacher","principle"],
     password: "1234abcd",
   });
   // to be called when submitted
@@ -44,7 +43,6 @@ const UserCreate = (props: any) => {
     const body = {
       registration: {
         applicationId: "1ae074db-32f3-4714-a150-cc8a370eafd1",
-        roles: state.roles,
         username: state.userName,
       },
       user: {
@@ -106,7 +104,7 @@ const UserCreate = (props: any) => {
           label="Mobile Phone"
           validate={validatePhoneNumber}
         />
-      
+
         <SelectInput
           value={state.designation}
           onChange={(e) => {
