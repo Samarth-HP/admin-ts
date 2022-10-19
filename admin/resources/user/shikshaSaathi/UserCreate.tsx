@@ -8,6 +8,8 @@ import {
   Button,
   minLength,
   maxLength,
+  required,
+  number,
 } from "react-admin";
 import { useLogin } from "../hooks";
 import { getClusters } from "../designation";
@@ -79,7 +81,7 @@ const UserCreate = (props: any) => {
   const blockChoices = getBlocks(state.district, "", _loggedInUser);
   const clusterChoices = getClusters(state.block, "", _loggedInUser);
   
-  const validatePhoneNumber = [minLength(10, "Phone Number must be 10 digit long"), maxLength(10, "Phone Number must be 10 digit long")];
+  const validatePhoneNumber = [required(),number(),minLength(10,"Phone Number must be of 10 digit"),maxLength(10,"Phone Number must be of 10 digit")];
   return userCreated ? (
     <>
       <p>User Successfully Created</p>
@@ -92,13 +94,15 @@ const UserCreate = (props: any) => {
           onChange={(e) => setState({ ...state, userName: e.target.value })}
           source="username"
           label="User Name"
+          validate={[required()]}
         />
         <TextInput
           onChange={(e) => setState({ ...state, fullName: e.target.value })}
           source="fullName"
           label="Name"
+          validate={[required()]}
         />
-        <NumberInput
+        <TextInput
           onChange={(e) => setState({ ...state, mobile: e.target.value })}
           source="mobilePhone"
           label="Mobile Phone"
