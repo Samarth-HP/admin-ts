@@ -57,8 +57,19 @@ const LocationList = () => {
     });
   }, [districtData]);
   const blocks = useMemo(() => {
-    if (!selectedDistrict || !districtData) {
+    if (!districtData) {
       return [];
+    }
+    if(!selectedDistrict){
+      return _.uniqBy(
+        districtData,
+        "block"
+      ).map((a) => {
+        return {
+          id: a.block,
+          name: a.block,
+        };
+      });
     }
     return _.uniqBy(
       districtData.filter((d) => d.district === selectedDistrict),
@@ -72,8 +83,19 @@ const LocationList = () => {
   }, [selectedDistrict, districtData]);
 
   const clusters = useMemo(() => {
-    if (!selectedBlock || !districtData) {
+    if (!districtData) {
       return [];
+    }
+    if(!selectedBlock){
+      return _.uniqBy(
+        districtData,
+        "cluster"
+      ).map((a) => {
+        return {
+          id: a.cluster,
+          name: a.cluster,
+        };
+      });
     }
     return _.uniqBy(
       districtData.filter((d) => d.block === selectedBlock),
@@ -119,7 +141,6 @@ const LocationList = () => {
   ];
   return (
     <ListDataGridWithPermissions
-      dataGridProps={{ rowClick: "show" }}
       listProps={{ filters: Filters }}
     >
       <TextField source="id" />
