@@ -292,6 +292,7 @@ const UserList = () => {
       <FunctionField
         label="Role"
         render={(record: any) => {
+<<<<<<< HEAD
           console.log(record);
           return DisplayRoles(record);
         }}
@@ -299,6 +300,16 @@ const UserList = () => {
       <TextField source="data.roleData.district" label="District" />
       <TextField source="data.roleData.block" label="Block" />
       <TextField source="data.roleData.cluster" label="Cluster" />
+=======
+          console.log(record)
+          return DisplayRoles(record);
+        }}
+      />
+
+       <TextField source="data.roleData.district" label="District" />
+       <TextField source="data.roleData.block" label="Block" />
+       <TextField source="data.roleData.cluster" label="Cluster" />
+>>>>>>> fix-shiksha-edit
 
       {/* <FunctionField
         label="District"
