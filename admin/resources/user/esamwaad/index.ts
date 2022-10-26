@@ -11,9 +11,9 @@ export default {
   create: UserCreate,
   show: UserShow,
   permissions: {
-    canEdit: ["Admin"],
+    canEdit: ["Admin","school"],
     canDelete: ["Admin"],
     canCreate: ["Admin"],
-    canList: ["Admin"],
+    canList: ["Admin","school"],
   },
 };

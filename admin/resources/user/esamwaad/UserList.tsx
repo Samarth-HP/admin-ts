@@ -51,7 +51,7 @@ const getTeacherDataByRecord = (id: any) => {
   return teacher;
 };
 const getCorrespondingTeacherDistrict = (record: any) => {
-  const teacher = getTeacherDataByRecord(record?.id);  
+  const teacher = getTeacherDataByRecord(record?.id);
 
   if (!teacher) return <LinearProgress />;
 
@@ -138,7 +138,7 @@ const UserList = () => {
     if (!districtData) {
       return [];
     }
-    if(!selectedDistrict){
+    if (!selectedDistrict) {
       return _.uniqBy(
         districtData,
         "block"
@@ -164,7 +164,7 @@ const UserList = () => {
     if (!districtData) {
       return [];
     }
-    if(!selectedBlock){
+    if (!selectedBlock) {
       return _.uniqBy(
         districtData,
         "cluster"
@@ -242,24 +242,35 @@ const UserList = () => {
       <FunctionField
         label="Role"
         render={(record: any) => {
+          console.log(record)
           return DisplayRoles(record);
         }}
       />
-      <TextField source="data.roleData.district" label="District" />
-      <TextField source="data.roleData.block" label="Block" />
-      <TextField source="data.roleData.cluster" label="Cluster" />
-      
+
+       <TextField source="data.roleData.district" label="District" />
+       <TextField source="data.roleData.block" label="Block" />
+       <TextField source="data.roleData.cluster" label="Cluster" />
+
       {/* <FunctionField
         label="District"
-        render={(record: any) => getCorrespondingTeacherDistrict(record)}
-      />{" "}
+        render={(record: any) => {
+          console.log(record);
+          return getCorrespondingTeacherDistrict(record)
+        }}
+      />
       <FunctionField
         label="Block"
-        render={(record: any) => getCorrespondingTeacherBlock(record)}
-      />{" "}
+        render={(record: any) => {
+          console.log(record);
+          return getCorrespondingTeacherBlock(record)
+        }}
+      />
       <FunctionField
         label="Cluster"
-        render={(record: any) => getCorrespondingTeacherCluster(record)}
+        render={(record: any) => {
+          console.log(record);
+          return getCorrespondingTeacherCluster(record)
+        }}
       /> */}
     </ListDataGridWithPermissions>
   );
