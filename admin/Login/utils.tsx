@@ -28,7 +28,6 @@ export const getToken = async (userName: string, password: string) => {
       event.key = key;
 
       document.dispatchEvent(event);
-
       originalSetItem.apply(this, [key, value]);
     };
 
