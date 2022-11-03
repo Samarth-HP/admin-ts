@@ -366,7 +366,7 @@ const UserForm = () => {
         )}
         <TextInput
           onChange={(e) => setState({ ...state, udise: e.target.value })}
-          source="udise"
+          source="data.udise"
           label="School UDISE"
           validate={inputConstraints.udise}
           defaultValue={record?.data?.udise}
