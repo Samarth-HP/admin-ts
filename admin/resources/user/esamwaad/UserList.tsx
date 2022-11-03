@@ -291,7 +291,6 @@ const UserList = () => {
       <FunctionField
         label="Role"
         render={(record: any) => {
-          console.log(record);
           return DisplayRoles(record);
         }}
       />
