@@ -30,6 +30,7 @@ import { getClusters } from "../designation";
 import { ChangePasswordButton } from "../ChangePasswordButton";
 import { designationLevels } from "../esamwaad/designation";
 
+let geographic_level: string = "";
 const displayRoles = (a: any) => {
   return (
     <span
@@ -53,13 +54,13 @@ const UserEditToolbar = (props: any) => (
 );
 const UserForm = () => {
   const { user: _loggedInUser } = useLogin();
-  const [scope, setScope] = useState("No");
+  const [scope, setScope] = useState("");
   const [state, setState] = useState({
     userName: "",
     fullName: "",
     mobile: "",
     designation: "",
-    geographicLevel: "Block",
+    geographicLevel: geographic_level,
     district: "",
     block: "",
     cluster: "",
@@ -119,6 +120,7 @@ const UserForm = () => {
           });
           setDesignationName(e.target.value);
           setScope(scopeData[0].scope);
+          geographic_level = scopeData[0].scope
         }}
         source="designation"
         label="Role"
@@ -211,7 +213,8 @@ const UserEdit = () => {
                 district: values?.district,
                 block: values?.block,
                 cluster: values?.cluster,
-                designation: values.designation,
+                designation: values?.designation,
+                geographic_level: geographic_level
               },
             },
             id: values.id,
