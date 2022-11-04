@@ -270,7 +270,7 @@ const UserForm = () => {
   const inputConstraints = {
     userName: [
       required("Please provide username"),
-      regex(/^[a-zA-Z0-9 ]*$/,"Name can only contain alphabets, numbers and spaces")
+      regex(/^[a-zA-Z0-9 ]*$/, "Name can only contain alphabets, numbers and spaces")
     ],
     udise: [
       required("Please provide UDISE"),
@@ -364,13 +364,13 @@ const UserForm = () => {
             />
           </>
         )}
-        <TextInput
-          onChange={(e) => setState({ ...state, udise: e.target.value })}
-          source="data.udise"
-          label="School UDISE"
-          validate={inputConstraints.udise}
-          defaultValue={record?.data?.udise}
-        />
+      <TextInput
+        onChange={(e) => setState({ ...state, udise: e.target.value })}
+        source="data.udise"
+        label="School UDISE"
+        validate={inputConstraints.udise}
+        defaultValue={record?.data?.udise}
+      />
 
       <ChangePasswordButton record={record}></ChangePasswordButton>
       <br></br>
@@ -400,7 +400,7 @@ const UserForm = () => {
 
 const UserEditToolbar = (props: any) => (
   <Toolbar {...props}>
-    <SaveButton sx={{backgroundColor : "green"}}/>
+    <SaveButton sx={{ backgroundColor: "green" }} />
   </Toolbar>
 );
 

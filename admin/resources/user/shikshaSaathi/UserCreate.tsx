@@ -10,6 +10,7 @@ import {
   maxLength,
   required,
   number,
+  useNotify,
 } from "react-admin";
 import { useLogin } from "../hooks";
 import { getClusters } from "../designation";
@@ -27,6 +28,8 @@ const UserCreate = (props: any) => {
   const { user: _loggedInUser } = useLogin();
   const [userCreated, setUserCreated] = useState(false);
   const [scope, setScope] = useState("No");
+  const notify = useNotify();
+
   const [state, setState] = useState({
     userName: "",
     fullName: "",
@@ -70,7 +73,8 @@ const UserCreate = (props: any) => {
 
     res.then((data) => {
       if (data?.data?.responseCode === "OK") {
-        setUserCreated(true);
+        notify(`User created successfully`, { type: 'success' });
+        window.location.replace('/#/shiksha_saathi_user')
       }
     });
   };
@@ -80,8 +84,8 @@ const UserCreate = (props: any) => {
   const districtChoices = getAllDistricts("", _loggedInUser);
   const blockChoices = getBlocks(state.district, "", _loggedInUser);
   const clusterChoices = getClusters(state.block, "", _loggedInUser);
-  
-  const validatePhoneNumber = [required(),number(),minLength(10,"Phone Number must be of 10 digit"),maxLength(10,"Phone Number must be of 10 digit")];
+
+  const validatePhoneNumber = [required(), number(), minLength(10, "Phone Number must be of 10 digit"), maxLength(10, "Phone Number must be of 10 digit")];
   return userCreated ? (
     <>
       <p>User Successfully Created</p>
