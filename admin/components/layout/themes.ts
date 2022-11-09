@@ -11,13 +11,7 @@ export const lightTheme = {
       dark: "#001064",
       contrastText: "#fff",
     },
-    background: {
-      default: "#fcfcfe",
-    },
     mode: "light" as "light",
-  },
-  shape: {
-    borderRadius: 5,
   },
   sidebar: {
     width: 260,
@@ -25,38 +19,89 @@ export const lightTheme = {
   },
   components: {
     ...defaultTheme.components,
-    RaMenuItemLink: {
-      styleOverrides: {
-        root: {
-          borderLeft: "3px solid #fff",
-          "&.RaMenuItemLink-active": {
-            borderLeft: "3px solid #4f3cc9",
-            backgroundColor: "#5a968b !important",
-            color: "#000000 !important",
-          },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        elevation1: {
-          boxShadow: "none",
-        },
-        root: {
-          border: "1px solid #e0e0e3",
-          backgroundClip: "padding-box",
-        },
-      },
-    },
     MuiAppBar: {
       styleOverrides: {
         colorSecondary: {
-          color: "black",
-          backgroundColor: "#a1dfc1",
+          color: "#FFF",
+          backgroundColor: "#111827",
+          border: "none",
+          boxShadow: "0px 0px 10px #000"
         },
       },
     },
-
+    RaMenuItemLink: {
+      styleOverrides: {
+        root: {
+          margin: '2px auto',
+          width: '95%',
+          color: "rgba(255,255,255,0.6)",
+          padding: "0.8rem 0.8rem",
+          fontSize: '0.85rem',
+          "& svg": {
+            height: '1.4rem',
+            width: '1.4rem',
+            color: "rgba(255,255,255,0.6)"
+          },
+          "&:hover": {
+            background: "#29303d",
+            color: "#FFF",
+            borderRadius: 10
+          },
+          "&.RaMenuItemLink-active": {
+            background: "#29303d",
+            color: "#FFF",
+            borderRadius: 10,
+            "& svg": {
+              color: "#FFF"
+            }
+          }
+        },
+      }
+    },
+    RaSidebar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#111827",
+          borderRight: '2px solid rgba(17,24,39, 0.1)',
+        }
+      }
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontSize: '0.8rem',
+        }
+      }
+    },
+    RaLayout: {
+      styleOverrides: {
+        root: {
+          "& .RaLayout-content": {
+            background: '#f1f5f9'
+          }
+        }
+      }
+    },
+    RaDatagrid: {
+      styleOverrides: {
+        root: {
+          "& .RaDatagrid-headerCell": {
+            padding: '1rem 1rem',
+            fontWeight: 'bold',
+            color: "#111827"
+          },
+          "& .RaDatagrid-rowEven": {
+            background: "#f0f3ff",
+            "&:hover": {
+              background: "#f0f3ff"
+            }
+          },
+          "& .RaDatagrid-rowOdd:hover": {
+            background: "#fff"
+          }
+        }
+      }
+    },
     MuiLinearProgress: {
       styleOverrides: {
         colorPrimary: {

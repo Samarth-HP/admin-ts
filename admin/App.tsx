@@ -107,8 +107,8 @@ const App = () => {
   return (
     <Admin
       dataProvider={dataProvider}
-      theme={lightTheme}
       layout={Layout}
+      theme={lightTheme}
       authProvider={authProvider}
       loginPage={Login}
     >

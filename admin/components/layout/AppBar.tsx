@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppBar, Logout, UserMenu, useTranslate } from "react-admin";
+import { AppBar, Logout, ToggleThemeButton, UserMenu, useTranslate, defaultTheme } from "react-admin";
 import { Link } from "react-router-dom";
 import {
     MenuItem,
@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { forwardRef } from "react";
+// import { darkTheme, lightTheme } from "./themes";
+
 
 
 // eslint-disable-next-line react/display-name
@@ -41,14 +43,13 @@ const CustomAppBar = (props: any) => {
             {...props}
             elevation={1}
             userMenu={<CustomUserMenu />}
-            sx={{
-                ".RaUserMenu-userButton": {
-                    backgroundColor: "#5a968b"
-                }
-            }}
         >
-            <img id="samarth-logo" src="https://himachal.nic.in/WriteReadData/l892s/16_l892s/samarth-logo-v9---lowres-22244626.png" />
-            <Typography sx={{flex: 1}}/>
+            <img id="samarth-logo" style={{ height: '3rem', padding: 5 }} src="https://himachal.nic.in/WriteReadData/l892s/16_l892s/samarth-logo-v9---lowres-22244626.png" />
+            <Typography sx={{ flex: 1 }} />
+            {/* <ToggleThemeButton
+                lightTheme={lightTheme}
+                darkTheme={darkTheme}
+            /> */}
         </AppBar>
     );
 };

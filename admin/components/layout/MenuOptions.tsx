@@ -12,9 +12,6 @@ import teacher from "../../resources/teacher";
 const MenuOptions: any[] = [
   {
     name: "Student",
-
-    icon: "SchoolIcon",
-
     resource: "student",
     props: student,
     permissions: ["Admin"],
@@ -33,7 +30,7 @@ const MenuOptions: any[] = [
 
     icon: "SchoolIcon",
 
-    permissions: ["Admin","school"],
+    permissions: ["Admin", "school"],
   },
   {
     name: "Shiksha Saathi Users",
