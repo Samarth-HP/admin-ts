@@ -15,23 +15,23 @@ import { darkTheme, lightTheme } from "./themes";
 
 
 // eslint-disable-next-line react/display-name
-const ConfigurationMenu = forwardRef((props, ref) => {
-    const translate = useTranslate();
-    return (
-        <MenuItem
-            component={Link}
-            // @ts-ignore
-            ref={ref}
-            {...props}
-            to="/configuration"
-        >
-            <ListItemIcon>
-                <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText>{translate("pos.configuration")}</ListItemText>
-        </MenuItem>
-    );
-});
+// const ConfigurationMenu = forwardRef((props, ref) => {
+//     const translate = useTranslate();
+//     return (
+//         <MenuItem
+//             component={Link}
+//             // @ts-ignore
+//             ref={ref}
+//             {...props}
+//             to="/configuration"
+//         >
+//             <ListItemIcon>
+//                 <SettingsIcon />
+//             </ListItemIcon>
+//             <ListItemText>{translate("pos.configuration")}</ListItemText>
+//         </MenuItem>
+//     );
+// });
 const CustomUserMenu = () => (
     <UserMenu>
         <Logout />
