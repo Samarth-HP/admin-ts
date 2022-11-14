@@ -19,9 +19,30 @@ const dataProvider = {
     { pagination: { page, perPage }, filter }: any
   ): Promise<any> => {
     let queryString = [`registrations.applicationId:${Applications[resource]}`];
-    console.log({ filter });
+    const userData: any = window.localStorage.getItem("userData");
+    const roleName: any = JSON.parse(userData)?.user?.user?.registrations[0]?.roles[0];
+
+    if (resource == "shiksha_saathi_user") {
+      switch (roleName) {
+        case "District Admin":
+          const userDistrict = JSON.parse(userData)?.user?.user?.registrations[0]?.data?.roleData?.district;
+          queryString = [`registrations.applicationId:${Applications[resource]} AND data.roleData.district: ${userDistrict}`];
+          break
+        case "Block Admin":
+          const userBlock = JSON.parse(userData)?.user?.user?.registrations[0]?.data?.roleData?.block;
+          queryString = [`registrations.applicationId:${Applications[resource]} AND data.roleData.block: ${userBlock}`];
+          break
+      }
+    }
+
+    // Pass the UDISES as per Esamwaad Roles Access in the below array.
+    // const UDISES = [2100600104, 110, 2080210301].join(" ");
+    if (resource == "e_samwaad_user") {
+      // queryString = [`registrations.applicationId:${Applications[resource]} AND data.udise: (${UDISES})`]
+      queryString = [`registrations.applicationId:${Applications[resource]}`]
+    }
+
     if (filter && Object.keys(filter).length > 0) {
-      queryString = [];
       if (filter?.udise) {
         queryString.push(`${filter?.udise}`);
       }
@@ -101,15 +122,15 @@ const dataProvider = {
     delete data["id"];
     try {
       const response = await client.patch("/admin/updateUser/" + id, data);
-      if (d) {
-        await clientGQL(UPDATE_USER_BY_ID_QUERY, { object: d, id: id });
-      }
+      // if (d) {
+      //   await clientGQL(UPDATE_USER_BY_ID_QUERY, { object: d, id: id });
+      // }
       if (response?.data?.result) {
         return {
           data: response?.data?.result,
         };
       }
-    } catch (e) {}
+    } catch (e) { }
     throw new Error("Unable to update");
   },
 };

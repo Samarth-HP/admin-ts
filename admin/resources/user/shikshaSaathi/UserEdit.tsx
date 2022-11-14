@@ -165,6 +165,13 @@ const UserForm = () => {
     minLength(10, "Phone Number must be 10 digit long"),
     maxLength(10, "Phone Number must be 10 digit long"),
   ];
+
+  const validateName = required("Please enter a valid name");
+  const validateRole = required("Please select a role")
+  const validateDistricts = required("Please select a district")
+  const validateBlock = required("Please select a block")
+  const validateCluster = required("Please select a cluster")
+
   const record = useRecordContext();
   const firstRender = useRef(true);
   const [designationName, setDesignationName] = useState("");
@@ -188,6 +195,7 @@ const UserForm = () => {
         onChange={(e) => setState({ ...state, fullName: e.target.value })}
         source="fullName"
         label="Full Name"
+        validate={validateName}
       />
       <TextInput
         onChange={(e) => setState({ ...state, mobile: e.target.value })}
@@ -212,6 +220,7 @@ const UserForm = () => {
         source="designation"
         label="Role"
         choices={designationChoices}
+        validate={validateRole}
       />
 
       {scope === "District" || scope === "Block" || scope === "Cluster" ? (
@@ -227,6 +236,7 @@ const UserForm = () => {
           label="District"
           // @ts-ignore
           choices={districts}
+          validate={validateDistricts}
         />
       ) : null}
 
@@ -242,6 +252,7 @@ const UserForm = () => {
           label="Block"
           // @ts-ignore
           choices={blocks}
+          validate={validateBlock}
         />
       ) : null}
       {scope === "Cluster" ? (
@@ -255,6 +266,7 @@ const UserForm = () => {
           label="Cluster"
           // @ts-ignore
           choices={clusters}
+          validate={validateCluster}
         />
       ) : null}
 
@@ -312,14 +324,14 @@ const UserEdit = () => {
                 district: values?.district,
                 block: values?.block,
                 cluster: values?.cluster,
-                designation: values?.designation,
+                designation: Array.isArray(values?.designation) ? values?.designation[0] : values?.designation,
                 geographic_level: geographic_level,
               },
             },
             registrations: [
               {
                 applicationId: "1ae074db-32f3-4714-a150-cc8a370eafd1",
-                roles: [values?.designation],
+                roles: Array.isArray(values?.designation) ? values?.designation : [values?.designation],
               },
             ],
             id: values.id,

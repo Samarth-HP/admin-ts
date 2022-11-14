@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Create,
   SimpleForm,
@@ -28,11 +28,12 @@ const UserCreate = (props: any) => {
   const [userCreated, setUserCreated] = useState(false);
   const { school, refresh: fetchSchool } = useSearchSchoolByUDISE();
   const dataProvider = useDataProvider();
+  const schoolIdRef = useRef<any>(null);
   const [state, setState] = useState({
     userName: "",
     fullName: "",
     mobile: "",
-    roles: ["school"],
+    roles: "school",
     udise: school?.udise,
     school: school?.id,
     designation: "",
@@ -49,10 +50,10 @@ const UserCreate = (props: any) => {
   const createUser = () => {
     // to be completed
     const endPoint = "/admin/createUser";
-    const body = {
+    const body: any = {
       registration: {
         applicationId: "f0ddb3f6-091b-45e4-8c0f-889f89d4f5da",
-        roles: state.roles,
+        roles: [state.roles],
         username: state.userName,
       },
       user: {
@@ -68,6 +69,24 @@ const UserCreate = (props: any) => {
         username: state.userName,
       },
     };
+
+    if (state.designation || state.modeOfEmployment || state.accountStatus) {
+      body['hasuraMutations'] = [
+        {
+          applicationId: "f0ddb3f6-091b-45e4-8c0f-889f89d4f5da",
+          mutation: "insertTeacherDesignationSchoolStatusAndEmployment",
+          payload: {
+            school_id: schoolIdRef.current,
+            role: state.roles,
+            joining_date: null,
+            employment: state.modeOfEmployment || "",
+            designation: state.designation || "",
+            cadre: state.designation || "",
+            account_status: state.accountStatus || ""
+          }
+        }
+      ]
+    }
     const res = client.post(endPoint, body);
     res.then((data) => {
       if (data?.data?.responseCode === "OK") {
@@ -90,7 +109,7 @@ const UserCreate = (props: any) => {
   const inputChoices = {
     designations: designationESamwaad.map(el => { return { id: el.designation, name: el.designation } }),
     accountStatuses: ["ACTIVE", "DEACTIVATED", "PENDING", "REJECTED"].map(el => { return { id: el, name: el } }),
-    roles: ["Teacher", "Principal", "school"].map(el => { return { id: el, name: el } }),
+    roles: ["school"].map(el => { return { id: el, name: el } }),
     employment: ["Permanent", "Contractual"].map(el => { return { id: el, name: el } })
   }
 
@@ -106,6 +125,7 @@ const UserCreate = (props: any) => {
       return "Please enter a valid UDISE"
     if (state.roles.includes("school"))
       return "Cannot register more than one school for the same UDISE";
+    schoolIdRef.current = res.data[0].id
     return undefined;
   };
 
@@ -147,7 +167,7 @@ const UserCreate = (props: any) => {
           label="Mobile Phone"
           validate={inputConstraints.mobile}
         />
-        <SelectArrayInput
+        <SelectInput
           onChange={(e) => setState({ ...state, roles: e.target.value })}
           source="roles"
           choices={inputChoices.roles}
@@ -199,7 +219,7 @@ const UserCreate = (props: any) => {
               onChange={(e) => setState({ ...state, udise: e.target.value })}
               source="udise"
               label="School UDISE"
-            // validate={inputConstraints.udise}
+              validate={inputConstraints.udise}
             />
           </>
         </ReferenceInput>

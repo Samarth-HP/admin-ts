@@ -10,19 +10,23 @@ import SchoolIcon from "@mui/icons-material/School";
 import teacher from "../../resources/teacher";
 
 const MenuOptions: any[] = [
-  {
-    name: "Student",
-    resource: "student",
-    props: student,
-    permissions: ["Admin"],
-  },
-  {
-    name: "Teacher",
-    icon: "SchoolIcon",
-    resource: "teacher",
-    props: teacher,
-    permissions: ["Admin"],
-  },
+  // {
+  //   name: "Student",
+
+  //   icon: "SchoolIcon",
+
+  //   resource: "student",
+  //   props: student,
+  //   permissions: ["Admin", "State Admin", "District Admin", "Block Admin"],
+  //   permissions: ["Admin"],
+  // },
+  // {
+  //   name: "Teacher",
+  //   icon: "SchoolIcon",
+  //   resource: "teacher",
+  //   props: teacher,
+  //   permissions: ["Admin", "State Admin"],
+  // },
   {
     name: "E Samwaad Users",
     resource: "e_samwaad_user",
@@ -30,40 +34,42 @@ const MenuOptions: any[] = [
 
     icon: "SchoolIcon",
 
-    permissions: ["Admin", "school"],
+    permissions: [
+      "Admin",
+      "State Admin",
+      "District Admin",
+      "Block Admin"
+      // "School Admin",
+    ],
   },
   {
     name: "Shiksha Saathi Users",
     resource: "shiksha_saathi_user",
     props: ShikshaSaathi,
-    permissions: ["Admin"],
+    permissions: ["Admin", "State Admin", "District Admin", "Block Admin"],
     icon: "SchoolIcon",
-
   },
-  {
-    name: "School",
-    resource: "school",
-    props: school,
-    permissions: ["Admin"],
-    icon: "SchoolIcon",
-
-  },
-  {
-    name: "Location",
-    resource: "location",
-    props: location,
-    permissions: ["Admin"],
-    icon: "SchoolIcon",
-
-  },
-  {
-    name: "Grade Assessment",
-    resource: "grade_assessment",
-    props: gradeAssessment,
-    permissions: ["Admin"],
-    icon: "SchoolIcon",
-
-  },
+  // {
+  //   name: "School",
+  //   resource: "school",
+  //   props: school,
+  //   permissions: ["Admin", "State Admin", "District Admin", "Block Admin"],
+  //   icon: "SchoolIcon",
+  // },
+  // {
+  //   name: "Location",
+  //   resource: "location",
+  //   props: location,
+  //   permissions: ["Admin", "State Admin"],
+  //   icon: "SchoolIcon",
+  // },
+  // {
+  //   name: "Grade Assessment",
+  //   resource: "grade_assessment",
+  //   props: gradeAssessment,
+  //   permissions: ["Admin", "State Admin"],
+  //   icon: "SchoolIcon",
+  // },
   // {
   //   name: "Assessment",
   //   resource: "assessment",
@@ -72,14 +78,13 @@ const MenuOptions: any[] = [
   //   icon: "SchoolIcon",
 
   // },
-  {
-    name: "School Mapping For Monitoring",
-    resource: "ss_school_allocation_data",
-    props: mapping,
-    permissions: ["Admin"],
-    icon: "SchoolIcon",
-
-  },
+  // {
+  //   name: "School Mapping For Monitoring",
+  //   resource: "ss_school_allocation_data",
+  //   props: mapping,
+  //   permissions: ["Admin", "State Admin"],
+  //   icon: "SchoolIcon",
+  // },
 ];
 export const MenuItemsWithPermissionResolver = (permissions: any) => {
   // Permissions are case In Sensitive
