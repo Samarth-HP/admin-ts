@@ -23,7 +23,7 @@ export const lightTheme = {
       styleOverrides: {
         colorSecondary: {
           color: "#FFF",
-          backgroundColor: "#111827",
+          backgroundColor: "#343a3f",
           border: "none",
           boxShadow: "0px 0px 10px #000"
         },
@@ -43,16 +43,21 @@ export const lightTheme = {
             color: "rgba(255,255,255,0.6)"
           },
           "&:hover": {
-            background: "#29303d",
-            color: "#FFF",
-            borderRadius: 10
-          },
-          "&.RaMenuItemLink-active": {
-            background: "#29303d",
-            color: "#FFF",
+            background: "#ebedec",
+            color: "#343a3f",
+            fontWeight: 600,
             borderRadius: 10,
             "& svg": {
-              color: "#FFF"
+              color: "#101a32"
+            }
+          },
+          "&.RaMenuItemLink-active": {
+            background: "#ebedec",
+            color: "#343a3f",
+            fontWeight: 600,
+            borderRadius: 10,
+            "& svg": {
+              color: "#101a32"
             }
           }
         },
@@ -61,8 +66,11 @@ export const lightTheme = {
     RaSidebar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#111827",
+          backgroundColor: "#212528",
           borderRight: '2px solid rgba(17,24,39, 0.1)',
+          "& .RaSidebar-paper": {
+            background: '#212528'
+          }
         }
       }
     },
@@ -112,5 +120,15 @@ export const lightTheme = {
         },
       },
     },
+    RaEdit: {
+      styleOverrides: {
+        root: {
+          "& .RaEdit-main": {
+            maxHeight: '90vh',
+            overflowY: 'scroll'
+          }
+        }
+      }
+    }
   },
 };
