@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { forwardRef } from "react";
+import { darkTheme, lightTheme } from "./themes";
 // import { darkTheme, lightTheme } from "./themes";
 
 
@@ -46,10 +47,10 @@ const CustomAppBar = (props: any) => {
         >
             <img id="samarth-logo" style={{ height: '3rem', padding: 5 }} src="https://himachal.nic.in/WriteReadData/l892s/16_l892s/samarth-logo-v9---lowres-22244626.png" />
             <Typography sx={{ flex: 1 }} />
-            {/* <ToggleThemeButton
+            <ToggleThemeButton
                 lightTheme={lightTheme}
                 darkTheme={darkTheme}
-            /> */}
+            />
         </AppBar>
     );
 };
