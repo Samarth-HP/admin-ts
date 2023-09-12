@@ -23,7 +23,6 @@ const dataProvider = {
         : user._applications.shiksha_saathi_user.id
       }`,
     ];
-
     let { roles: scope }: any = user.getDecodedUserToken();
 
     let compliment = {
@@ -34,7 +33,8 @@ const dataProvider = {
     };
 
     if (compliment.shiksha_sathi) {
-      let { district, block }: any = await user.getUserRoleData();
+      let roleData = await user.getUserRoleData();
+      let { district, block }: any = roleData;
       switch (scope[0]) {
         case user.scope.district:
           queryString = [

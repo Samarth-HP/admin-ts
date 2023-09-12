@@ -69,9 +69,9 @@ class UserService {
                 console.log(roleData, "roledata")
                 if (roleData) return roleData
             }
-        } catch (error) {
+            return false;
+        } catch (err) {
             return false
-
         }
     }
 
